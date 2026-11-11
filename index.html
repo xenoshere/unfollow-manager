@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unfollow Manager</title>
+<meta name="theme-color" content="#101116">
+<style>
+:root{--bg:#0e1016;--panel:#171a23;--panel2:#202431;--line:#2a3040;--txt:#f5f6fb;--muted:#9ba3b5;--accent:#a78bfa;--green:#4adea7;--red:#fb7185;--yellow:#f6c96b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#24203b 0,transparent 38%),var(--bg);color:var(--txt);font:14px Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+button,input{font:inherit}button{cursor:pointer}.wrap{max-width:1120px;margin:auto;padding:26px 20px 55px}.top{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:32px}.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,#7959e8,#d66aa9);display:grid;place-items:center;font-size:24px}.brand b{font-size:17px}.muted{color:var(--muted)}.small{font-size:11px}.pill{border:1px solid var(--line);background:#171a23;border-radius:30px;padding:8px 12px;color:#c5cad6;font-size:11px}.hero{margin:0 0 24px}.eyebrow{color:var(--accent);font-weight:750;letter-spacing:1.8px;text-transform:uppercase;font-size:10px}.hero h1{font-size:clamp(29px,5vw,43px);letter-spacing:-1.7px;margin:8px 0}.hero p{color:var(--muted);line-height:1.65;max-width:680px;margin:0}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}.card,.panel{background:rgba(23,26,35,.94);border:1px solid var(--line);border-radius:18px}.stat{padding:17px}.stat label{color:var(--muted);font-size:11px}.stat strong{display:block;font-size:29px;letter-spacing:-1px;margin-top:8px}.green{color:var(--green)}.red{color:var(--red)}.layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(270px,.8fr);gap:15px;align-items:start}.panel{padding:19px}.panelhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}.panel h2{font-size:15px;margin:0}.btn{border:1px solid transparent;border-radius:10px;padding:10px 13px;font-size:12px;font-weight:700}.primary{background:var(--accent);color:#171126}.secondary{background:#252a38;color:var(--txt);border-color:var(--line)}.danger{background:#49232d;color:#ffb4c0;border-color:#713542}.quiet{background:transparent;border-color:var(--line);color:var(--muted)}input[type=email],input[type=password],input[type=text],input[type=search]{width:100%;background:#10131b;color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:11px 12px;outline:none}input:focus{border-color:var(--accent)}.stack{display:grid;gap:9px}.toolbar{display:flex;gap:9px;margin:12px 0}.toolbar input{flex:1}.person{display:flex;align-items:center;gap:11px;padding:12px 0;border-bottom:1px solid var(--line)}.person:last-child{border:0}.avatar{width:39px;height:39px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#303b55,#68568e);font-weight:800}.personinfo{flex:1;min-width:0}.username{font-weight:750;font-size:13px}.hint{font-size:10px;color:var(--muted);margin-top:4px}.person.done .username{text-decoration:line-through;color:#8e96a7}.person.done .hint{color:var(--green)}.tag{font-size:10px;padding:5px 8px;border-radius:30px;background:#3d222d;color:#ff9bab;white-space:nowrap}.tag.done{background:#17362d;color:#7be2b8}.progress{height:7px;border-radius:20px;background:#2a3040;overflow:hidden;margin-top:8px}.bar{height:100%;width:0;background:linear-gradient(90deg,#9b80f3,#4adea7);transition:width .2s}.upload{border:1px dashed #50596c;background:#11151e;border-radius:14px;padding:17px;text-align:center}.upload p{font-size:11px;color:var(--muted);line-height:1.55}.file{display:none}.notice{background:#2a2519;border:1px solid #54472b;border-radius:12px;padding:12px;color:#e8d7ae;font-size:11px;line-height:1.6;margin-top:12px}.divider{height:1px;background:var(--line);margin:16px 0}.hidden{display:none!important}.auth{max-width:420px;margin:7vh auto;padding:24px}.auth h1{font-size:25px;margin:5px 0 8px}.auth p{color:var(--muted);font-size:12px;line-height:1.6}.auth .logo{margin-bottom:20px}.message{font-size:11px;color:var(--yellow);min-height:16px}.activity{display:grid;gap:9px}.activity div{font-size:11px;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:8px}.empty{text-align:center;color:var(--muted);padding:28px 8px;font-size:12px}.actions{display:flex;gap:8px;flex-wrap:wrap}.footer{text-align:center;color:#70798b;font-size:10px;line-height:1.7;margin-top:24px}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}}@media(max-width:480px){.wrap{padding:18px 13px 40px}.panel{padding:14px}.pill{font-size:9px}.person{gap:8px}.person .tag{display:none}.btn{padding:9px 10px}}
+</style>
+</head>
+<body>
+<section id="authView" class="auth card">
+ <div class="logo">◎</div><div class="eyebrow">YOUR PERSONAL FOLLOWING ASSISTANT</div>
+ <h1>Masuk ke Unfollow Manager</h1><p>Login untuk menyimpan daftar Instagram dan progres kunjunganmu. Akun ini terpisah dari akun Instagram.</p>
+ <div class="stack">
+  <input id="email" type="email" placeholder="Email" autocomplete="email">
+  <input id="password" type="password" placeholder="Password (minimal 6 karakter)" autocomplete="current-password">
+  <button class="btn primary" id="loginBtn">Masuk</button>
+  <button class="btn secondary" id="signupBtn">Buat akun baru</button>
+  <button class="btn quiet" id="googleBtn">Lanjutkan dengan Google</button>
+  <div id="authMsg" class="message"></div>
+ </div>
+ <div class="divider"></div><p class="small">Google login perlu diaktifkan di pengaturan Supabase. Email/password dapat digunakan setelah konfigurasi Supabase selesai.</p>
+</section>
+
+<main id="appView" class="wrap hidden">
+ <header class="top"><div class="brand"><div class="logo">◎</div><div><b>Unfollow Manager</b><div class="muted small">Instagram following tracker</div></div></div><div class="actions"><span id="userBadge" class="pill">Akun</span><button id="logoutBtn" class="btn quiet">Keluar</button></div></header>
+ <section class="hero"><div class="eyebrow">LESS SCROLLING, MORE CONTROL</div><h1>Bro, gaskeun. <span style="color:var(--accent)">Beresin following.</span></h1><p>Upload data Instagram sekali, lalu klik username untuk membuka profil di tab baru. Saat kembali ke website, akun otomatis ditandai sudah dikunjungi dan pindah ke bagian bawah.</p></section>
+ <section class="grid">
+  <div class="card stat"><label>Followers</label><strong id="followersNum">0</strong></div>
+  <div class="card stat"><label>Following</label><strong id="followingNum">0</strong></div>
+  <div class="card stat"><label>Follow back</label><strong id="mutualNum" class="green">0</strong></div>
+  <div class="card stat"><label>Tidak follow back</label><strong id="notbackNum" class="red">0</strong></div>
+ </section>
+ <section class="layout">
+  <div class="panel">
+   <div class="panelhead"><div><h2>Daftar tidak follow back</h2><div id="listCaption" class="muted small">Belum ada data</div></div><span id="pendingPill" class="tag">0 pending</span></div>
+   <div class="toolbar"><input id="search" type="search" placeholder="Cari username..."><button id="undoBtn" class="btn secondary" disabled>Undo terakhir</button></div>
+   <div id="peopleList"><div class="empty">Upload file followers dan following untuk memulai.</div></div>
+   <div class="divider"></div><div class="muted small" style="display:flex;justify-content:space-between"><span>Progres dikunjungi</span><b id="progressLabel">0 / 0</b></div><div class="progress"><div id="progressBar" class="bar"></div></div>
+  </div>
+  <aside class="stack">
+   <div class="panel"><div class="panelhead"><div><h2>Impor data Instagram</h2><div class="muted small">Cukup upload saat data perlu diperbarui</div></div></div>
+    <div class="upload"><div style="font-size:24px">⇧</div><b>Pilih file JSON</b><p>Pilih file followers_1.json (atau followers.json) dan following.json dari ekspor Instagram.</p><label for="jsonFiles" class="btn primary">Pilih JSON</label><input id="jsonFiles" class="file" type="file" accept=".json,application/json" multiple><div id="fileStatus" class="muted small" style="margin-top:10px">Belum ada file dipilih</div></div>
+    <div class="notice"><b>Privasi & keamanan:</b> file diproses di browser lalu daftar dan progres disimpan ke database akunmu. Jangan pernah memasukkan password atau cookie Instagram di website ini.</div>
+   </div>
+   <div class="panel"><div class="panelhead"><div><h2>Aktivitas terbaru</h2><div class="muted small">Aktivitas di akun ini</div></div></div><div id="activity" class="activity"><div>Belum ada aktivitas.</div></div></div>
+  </aside>
+ </section>
+ <div class="footer">Unfollow Manager · Klik username akan membuka Instagram di tab baru.<br>Status berarti “sudah dikunjungi”, bukan verifikasi bahwa unfollow benar-benar dilakukan.</div>
+</main>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+// 1) Isi dua nilai ini dari Supabase Project Settings > API.
+const SUPABASE_URL = 'PASTE_SUPABASE_PROJECT_URL_HERE';
+const SUPABASE_ANON_KEY = 'PASTE_SUPABASE_ANON_KEY_HERE';
+const configured = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('PASTE_') && !SUPABASE_ANON_KEY.includes('PASTE_');
+const supabase = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+let currentUser = null, rows = [], lastVisitedId = null, busy = false;
+const $ = id => document.getElementById(id);
+const msg = (id,text) => $(id).textContent = text;
+const fmt = n => Number(n||0).toLocaleString('id-ID');
+const clean = s => String(s||'').trim().replace(/^@/,'').toLowerCase();
+
+function showAuth(message='') { $('authView').classList.remove('hidden'); $('appView').classList.add('hidden'); msg('authMsg',message); }
+function showApp() { $('authView').classList.add('hidden'); $('appView').classList.remove('hidden'); $('userBadge').textContent=currentUser?.email||'Akun'; }
+function requireConfig() { if(!supabase){msg('authMsg','Konfigurasi Supabase belum diisi. Buka index.html dan isi SUPABASE_URL serta SUPABASE_ANON_KEY.');return false;}return true; }
+async function authAction(kind) {
+ if(!requireConfig()) return;
+ const email=$('email').value.trim(), password=$('password').value;
+ if(!email || !password){msg('authMsg','Masukkan email dan password.');return;}
+ msg('authMsg','Memproses...');
+ const result = kind==='signup' ? await supabase.auth.signUp({email,password}) : await supabase.auth.signInWithPassword({email,password});
+ if(result.error){msg('authMsg',result.error.message);return;}
+ if(kind==='signup' && !result.data.session){msg('authMsg','Akun dibuat. Cek email untuk konfirmasi, lalu login.');return;}
+ currentUser=result.data.user; await loadData(); showApp();
+}
+$('loginBtn').onclick=()=>authAction('login');
+$('signupBtn').onclick=()=>authAction('signup');
+$('googleBtn').onclick=async()=>{if(!requireConfig())return;const {error}=await supabase.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.href}});if(error)msg('authMsg',error.message);};
+$('logoutBtn').onclick=async()=>{if(supabase)await supabase.auth.signOut();currentUser=null;rows=[];showAuth();};
+if(supabase){
+ const {data:{session}}=await supabase.auth.getSession();
+ if(session){currentUser=session.user;await loadData();showApp();}
+ supabase.auth.onAuthStateChange(async(_event,session)=>{if(session&&!currentUser){currentUser=session.user;await loadData();showApp();}});
+}else{showAuth('Mode belum dikonfigurasi. Isi kredensial Supabase untuk mengaktifkan login dan sinkronisasi cloud.');}
+
+async function loadData(){
+ if(!currentUser)return;
+ const {data,error}=await supabase.from('tracker_data').select('*').eq('user_id',currentUser.id).maybeSingle();
+ if(error){alert('Gagal mengambil data: '+error.message);return;}
+ if(data){rows=Array.isArray(data.accounts)?data.accounts:[];render(data.followers_count||0,data.following_count||0);}
+ else {rows=[];render();}
+ await loadActivity();
+}
+async function saveData(followersCount=Number($('followersNum').dataset.value||0),followingCount=Number($('followingNum').dataset.value||0)){
+ if(!currentUser)return;
+ const payload={user_id:currentUser.id,accounts:rows,followers_count:followersCount,following_count:followingCount,updated_at:new Date().toISOString()};
+ const {error}=await supabase.from('tracker_data').upsert(payload,{onConflict:'user_id'});
+ if(error)alert('Gagal menyimpan progres: '+error.message);
+ $('followersNum').dataset.value=followersCount;$('followingNum').dataset.value=followingCount;
+}
+async function addActivity(action,username=''){
+ if(!currentUser)return;
+ await supabase.from('tracker_activity').insert({user_id:currentUser.id,action,username});
+ await loadActivity();
+}
+async function loadActivity(){
+ const {data}=await supabase.from('tracker_activity').select('action,username,created_at').eq('user_id',currentUser.id).order('created_at',{ascending:false}).limit(6);
+ $('activity').innerHTML='';
+ if(!data?.length){$('activity').innerHTML='<div>Belum ada aktivitas.</div>';return;}
+ data.forEach(item=>{const d=document.createElement('div');d.textContent=(item.action==='import'?'Impor data selesai':item.action==='visited'?'Membuka @'+item.username:'Mengubah progres @'+item.username)+' · '+new Date(item.created_at).toLocaleString('id-ID');$('activity').append(d);});
+}
+function render(fCount=Number($('followersNum').dataset.value||0),followingCount=Number($('followingNum').dataset.value||0)){
+ const visited=rows.filter(x=>x.visited).length,pending=rows.length-visited;
+ $('followersNum').textContent=fmt(fCount);$('followingNum').textContent=fmt(followingCount);
+ $('mutualNum').textContent=fmt(Math.max(0,followingCount-rows.length));$('notbackNum').textContent=fmt(rows.length);
+ $('listCaption').textContent=rows.length?fmt(rows.length)+' akun · '+fmt(visited)+' sudah dikunjungi':'Belum ada data';
+ $('pendingPill').textContent=fmt(pending)+' pending';$('progressLabel').textContent=fmt(visited)+' / '+fmt(rows.length);
+ $('progressBar').style.width=(rows.length?visited/rows.length*100:0)+'%';
+ const q=clean($('search').value), list=$('peopleList');list.innerHTML='';
+ const ordered=[...rows].sort((a,b)=>Number(a.visited)-Number(b.visited)||a.username.localeCompare(b.username));
+ const filtered=ordered.filter(x=>x.username.includes(q));
+ if(!filtered.length){list.innerHTML='<div class="empty">'+(rows.length?'Username tidak ditemukan.':'Upload file followers dan following untuk memulai.')+'</div>';return;}
+ filtered.forEach(item=>{
+  const row=document.createElement('div');row.className='person'+(item.visited?' done':'');
+  const avatar=document.createElement('div');avatar.className='avatar';avatar.textContent=item.username.slice(0,1).toUpperCase();
+  const info=document.createElement('div');info.className='personinfo';
+  const name=document.createElement('div');name.className='username';name.textContent='@'+item.username;
+  const hint=document.createElement('div');hint.className='hint';hint.textContent=item.visited?'Sudah dikunjungi':'Tidak follow back';
+  info.append(name,hint);
+  const tag=document.createElement('span');tag.className='tag'+(item.visited?' done':'');tag.textContent=item.visited?'Dikunjungi':'Pending';
+  const btn=document.createElement('button');btn.className='btn '+(item.visited?'secondary':'primary');btn.textContent=item.visited?'Buka lagi':'Buka IG';
+  btn.onclick=()=>openProfile(item);
+  row.append(avatar,info,tag,btn);list.append(row);
+ });
+ $('undoBtn').disabled=!lastVisitedId;
+}
+async function openProfile(item){
+ // Open first to avoid popup blockers, then persist visit status.
+ const tab=window.open('https://www.instagram.com/'+encodeURIComponent(item.username)+'/','_blank','noopener');
+ if(!tab){alert('Browser memblokir tab baru. Izinkan pop-up untuk website ini.');return;}
+ if(!item.visited){item.visited=true;lastVisitedId=item.username;render();await saveData();await addActivity('visited',item.username);}
+}
+$('search').addEventListener('input',()=>render());
+$('undoBtn').onclick=async()=>{if(!lastVisitedId)return;const item=rows.find(x=>x.username===lastVisitedId);if(item){item.visited=false;await saveData();await addActivity('undo',lastVisitedId);lastVisitedId=null;render();}};
+$('jsonFiles').addEventListener('change',async e=>{
+ const files=[...e.target.files];if(!files.length)return;
+ msg('fileStatus','Membaca '+files.length+' file...');
+ let followers=null,following=null;
+ try{
+  for(const file of files){
+   const data=JSON.parse(await file.text()),names=extractNames(data),n=file.name.toLowerCase();
+   if(n.includes('following'))following=names;
+   else if(n.includes('follower'))followers=names;
+  }
+  if(!followers||!following){msg('fileStatus','Pilih file followers*.json dan following.json bersamaan.');return;}
+  const followerSet=new Set(followers);
+  rows=following.filter(x=>!followerSet.has(x)).map(username=>({username,visited:false}));
+  await saveData(followers.length,following.length);await addActivity('import');
+  render(followers.length,following.length);
+  msg('fileStatus','Berhasil: '+fmt(rows.length)+' akun tidak follow back. Data tersimpan ke akunmu.');
+ }catch(err){msg('fileStatus','JSON gagal dibaca: '+err.message);}
+ e.target.value='';
+});
+function extractNames(data){
+ const out=[];
+ function walk(node){
+  if(!node)return;
+  if(Array.isArray(node)){node.forEach(walk);return;}
+  if(typeof node==='object'){
+   if(Array.isArray(node.string_list_data))for(const item of node.string_list_data){
+    let val=item?.value;
+    if(!val&&item?.href){const m=item.href.match(/instagram\.com\/([^/?#]+)/i);if(m)val=m[1];}
+    if(val)out.push(clean(val));
+   }
+   Object.values(node).forEach(walk);
+  }
+ }
+ walk(data);return [...new Set(out.filter(Boolean))];
+}
+</script>
+</body></html>
