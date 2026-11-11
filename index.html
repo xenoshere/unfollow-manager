@@ -56,7 +56,7 @@ button,input{font:inherit}button{cursor:pointer}.wrap{max-width:1120px;margin:au
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
 // 1) Isi dua nilai ini dari Supabase Project Settings > API.
-const SUPABASE_URL = 'https://cmpvducnlyazhkhskets.supabase.co/rest/v1/';
+const SUPABASE_URL = 'https://cmpvducnlyazhkhskets.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_1708WfMZyTS0VRYK2RsNig_XtlmIP41';
 const configured = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('PASTE_') && !SUPABASE_ANON_KEY.includes('PASTE_');
 const supabase = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
