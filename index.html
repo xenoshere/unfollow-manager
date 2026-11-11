@@ -57,7 +57,7 @@ import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 
 // 1) Isi dua nilai ini dari Supabase Project Settings > API.
 const SUPABASE_URL = 'https://cmpvducnlyazhkhskets.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_1708WfMZyTS0VRYK2RsNig_XtlmIP41';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtcHZkdWNubHlhemhraHNrZXRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ0MDUyMjgsImV4cCI6MjEwOTk4MTIyOH0.Xj8O_OOBtjLOepyt83moAwfpS-5bRZ8K7RgJeTGX2w0';
 const configured = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('PASTE_') && !SUPABASE_ANON_KEY.includes('PASTE_');
 const supabase = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
